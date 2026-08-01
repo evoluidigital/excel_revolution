@@ -701,6 +701,394 @@ window.addEventListener("load",()=>{
 
 
 });
+       /* ==========================================
+   SISTEMA FAQ - ABRIR E FECHAR PERGUNTAS
+========================================== */
+
+
+const faqItems =
+document.querySelectorAll(".faq-item");
+
+
+faqItems.forEach(item=>{
+
+
+    const question =
+    item.querySelector(".faq-question");
+
+
+    if(question){
+
+
+        question.addEventListener("click",()=>{
+
+
+            faqItems.forEach(other=>{
+
+
+                if(other !== item){
+
+
+                    other.classList.remove("active");
+
+
+                }
+
+
+            });
+
+
+
+            item.classList.toggle("active");
+
+
+        });
+
+
+    }
+
+
+});
+
+
+
+/* ==========================================
+   DESTAQUE AUTOMÁTICO NOS CTA
+========================================== */
+
+
+const ctas =
+document.querySelectorAll(".cta, .btn-primary");
+
+
+
+ctas.forEach(cta=>{
+
+
+    setInterval(()=>{
+
+
+        cta.classList.add("pulse");
+
+
+        setTimeout(()=>{
+
+
+            cta.classList.remove("pulse");
+
+
+        },800);
+
+
+
+    },5000);
+
+
+});
+
+
+
+/* ==========================================
+   COPIAR TEXTO PARA ÁREA DE TRANSFERÊNCIA
+========================================== */
+
+
+const copyButtons =
+document.querySelectorAll(".copy-btn");
+
+
+
+copyButtons.forEach(button=>{
+
+
+    button.addEventListener("click",()=>{
+
+
+        const text =
+        button.getAttribute("data-copy");
+
+
+
+        if(text){
+
+
+            navigator.clipboard.writeText(text);
+
+
+
+            button.innerHTML =
+            "Copiado ✓";
+
+
+
+            setTimeout(()=>{
+
+
+                button.innerHTML =
+                "Copiar";
+
+
+            },2000);
+
+
+        }
+
+
+    });
+
+
+});
+
+
+
+/* ==========================================
+   ANIMAÇÃO DE BENEFÍCIOS
+========================================== */
+
+
+const benefits =
+document.querySelectorAll(".benefit-card");
+
+
+
+benefits.forEach((card,index)=>{
+
+
+    card.style.transitionDelay =
+    `${index * 100}ms`;
+
+
+
+});
+
+
+
+/* ==========================================
+   SCROLL PROGRESS BAR
+========================================== */
+
+
+const progressBar =
+document.querySelector(".progress-bar");
+
+
+
+window.addEventListener("scroll",()=>{
+
+
+    if(progressBar){
+
+
+        let scrollTop =
+        document.documentElement.scrollTop;
+
+
+        let height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+
+        let progress =
+        (scrollTop / height) * 100;
+
+
+
+        progressBar.style.width =
+        progress + "%";
+
+
+    }
+
+
+});
+       /* ==========================================
+   LAZY LOAD DE IMAGENS
+========================================== */
+
+
+const lazyImages =
+document.querySelectorAll("img[data-src]");
+
+
+if(lazyImages.length){
+
+
+const imageObserver =
+new IntersectionObserver(entries=>{
+
+
+    entries.forEach(entry=>{
+
+
+        if(entry.isIntersecting){
+
+
+            const image =
+            entry.target;
+
+
+            image.src =
+            image.dataset.src;
+
+
+            imageObserver.unobserve(image);
+
+
+        }
+
+
+    });
+
+
+});
+
+
+
+lazyImages.forEach(img=>{
+
+
+    imageObserver.observe(img);
+
+
+});
+
+
+}
+
+
+
+/* ==========================================
+   ANIMAÇÃO DE CARDS AO PASSAR O MOUSE
+========================================== */
+
+
+const cards =
+document.querySelectorAll(".card, .feature-card");
+
+
+
+cards.forEach(card=>{
+
+
+    card.addEventListener("mouseenter",()=>{
+
+
+        card.style.transform =
+        "translateY(-8px)";
+
+
+    });
+
+
+
+    card.addEventListener("mouseleave",()=>{
+
+
+        card.style.transform =
+        "translateY(0)";
+
+
+    });
+
+
+
+});
+
+
+
+/* ==========================================
+   MODO FOCO PARA CTA PRINCIPAL
+========================================== */
+
+
+const mainCTA =
+document.querySelector(".main-cta");
+
+
+
+if(mainCTA){
+
+
+    window.addEventListener("scroll",()=>{
+
+
+        let position =
+        mainCTA.getBoundingClientRect();
+
+
+
+        if(position.top < window.innerHeight &&
+           position.bottom > 0){
+
+
+            mainCTA.classList.add("visible");
+
+
+        }
+
+
+    });
+
+
+}
+
+
+
+/* ==========================================
+   DETECÇÃO DE DISPOSITIVO
+========================================== */
+
+
+const isMobile =
+window.innerWidth <= 768;
+
+
+
+if(isMobile){
+
+
+    document.body.classList.add("mobile");
+
+
+}else{
+
+
+    document.body.classList.add("desktop");
+
+
+}
+
+
+
+/* ==========================================
+   ANO AUTOMÁTICO NO RODAPÉ
+========================================== */
+
+
+const year =
+document.querySelector(".current-year");
+
+
+
+if(year){
+
+
+    year.innerHTML =
+    new Date().getFullYear();
+
+
+}
+
+
+
+/* ==========================================
+   FINALIZAÇÃO DO SCRIPT
+========================================== */
+
+
+console.log(
+"Excel Revolution Premium carregado com sucesso!"
+);
 
     });
 
