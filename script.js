@@ -1094,3 +1094,192 @@ console.log(
 
 
 });
+/* ==========================================
+   BACK TO TOP - BOTÃO VOLTAR AO TOPO
+========================================== */
+
+
+const backTop =
+document.querySelector(".back-top");
+
+
+
+window.addEventListener("scroll",()=>{
+
+
+    if(backTop){
+
+
+        if(window.scrollY > 500){
+
+
+            backTop.classList.add("show");
+
+
+        }else{
+
+
+            backTop.classList.remove("show");
+
+
+        }
+
+
+    }
+
+
+});
+
+
+
+if(backTop){
+
+
+    backTop.addEventListener("click",()=>{
+
+
+        window.scrollTo({
+
+
+            top:0,
+
+
+            behavior:"smooth"
+
+
+        });
+
+
+    });
+
+
+}
+
+
+
+/* ==========================================
+   DETECÇÃO DE LINKS EXTERNOS
+========================================== */
+
+
+document.querySelectorAll("a").forEach(link=>{
+
+
+    const href =
+    link.getAttribute("href");
+
+
+
+    if(href && href.startsWith("http")){
+
+
+        link.setAttribute(
+            "target",
+            "_blank"
+        );
+
+
+        link.setAttribute(
+            "rel",
+            "noopener noreferrer"
+        );
+
+
+    }
+
+
+});
+
+
+
+/* ==========================================
+   BLOQUEIO DE ERROS SILENCIOSOS
+========================================== */
+
+
+window.addEventListener(
+"error",
+function(event){
+
+
+    console.warn(
+        "Elemento não carregado:",
+        event.target
+    );
+
+
+},
+true);
+
+
+
+/* ==========================================
+   EXPERIÊNCIA PREMIUM MOBILE
+========================================== */
+
+
+let lastScroll = 0;
+
+
+window.addEventListener("scroll",()=>{
+
+
+    const currentScroll =
+    window.scrollY;
+
+
+
+    const header =
+    document.getElementById("header");
+
+
+
+    if(header){
+
+
+        if(currentScroll > lastScroll &&
+           currentScroll > 150){
+
+
+            header.style.transform =
+            "translateY(-100%)";
+
+
+        }else{
+
+
+            header.style.transform =
+            "translateY(0)";
+
+
+        }
+
+
+    }
+
+
+
+    lastScroll =
+    currentScroll;
+
+
+});
+
+
+
+/* ==========================================
+   INICIALIZAÇÃO FINAL
+========================================== */
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    document.body.classList.add(
+        "js-loaded"
+    );
+
+
+});
